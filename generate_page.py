@@ -1453,8 +1453,8 @@ def build_html(theme="blue"):
 
       const c = PIN_COLORS[spot.habitat_tag] || '#b5382a';
       const birdsHtml = spot.birds.map(b => `<span class="bird-chip">${{b}}</span>`).join('');
+      const amapNavUrl = `https://uri.amap.com/marker?position=${{spot.lon}},${{spot.lat}}&name=${{encodeURIComponent(spot.name)}}&callnative=1`;
       const qqNavUrl = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${{spot.lat}},${{spot.lon}};title:${{encodeURIComponent(spot.name)}};addr:${{encodeURIComponent('厦门市' + spot.district)}}&referer=xmbirds`;
-      const amapNavUrl = `https://uri.amap.com/marker?position=${{spot.lon}},${{spot.lat}}&name=${{encodeURIComponent(spot.name)}}`;
 
       const sheet = document.getElementById('spotSheet');
       sheet.style.borderTopColor = c;
@@ -1478,8 +1478,8 @@ def build_html(theme="blue"):
         <div>${{birdsHtml}}</div>
         <div class="sheet-tips">💡 <strong>观鸟与交通贴士：</strong>${{spot.tips}}</div>
         <div class="sheet-actions">
-          <a class="btn-primary" href="${{qqNavUrl}}" target="_blank" rel="noopener">🧭 腾讯地图导航 (微信推荐)</a>
-          <a class="btn-amap" href="${{amapNavUrl}}" target="_blank" rel="noopener">🗺️ 高德地图导航</a>
+          <a class="btn-primary" href="${{amapNavUrl}}" target="_blank" rel="noopener">🧭 高德地图导航 (推荐)</a>
+          <a class="btn-amap" href="${{qqNavUrl}}" target="_blank" rel="noopener">🗺️ 腾讯地图导航</a>
         </div>
       `;
 

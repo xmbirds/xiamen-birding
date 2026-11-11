@@ -914,8 +914,8 @@
         labelTransport: '🚌 交通方式：',
         labelDifficulty: '🥾 难度系数：',
         labelTip: '💡 观鸟提示：',
-        btnTencent: '🧭 腾讯地图导航 (微信推荐)',
-        btnAmap: '🗺️ 高德地图导航'
+        btnAmap: '🧭 高德地图导航 (推荐)',
+        btnTencent: '🗺️ 腾讯地图导航'
       },
       en: {
         mapHint: '👆 Tap any numbered red circle ①–⑨ on the map or in the bottom-right legend to open the hotspot guide',
@@ -935,14 +935,14 @@
         thHabitat: 'Habitat & Best Months',
         thBirds: 'Key & Notable Birds',
         localMapTitle: '🗺️ Satellite Guide Map (Tap red circles to navigate)',
-        subspotsNavLabel: '📍 Navigate to Sub-sites:',
+        subspotsNavLabel: '📍 Navigate to Sub-sites (Amap):',
         labelDuration: '⏱️ Duration: ',
         labelMonths: '📅 Best Months: ',
         labelTransport: '🚌 Getting There: ',
         labelDifficulty: '🥾 Difficulty: ',
         labelTip: '💡 Birding Tip: ',
-        btnTencent: '🧭 Tencent Maps (WeChat)',
-        btnAmap: '🗺️ Amap Navigation'
+        btnAmap: '🧭 Amap Navigation (Recommended)',
+        btnTencent: '🗺️ Tencent Maps'
       }
     };
 
@@ -1144,14 +1144,14 @@
       const subspots = spot.local_map.subspots || [];
       const subspotsNavHtml = subspots.map(sub => {
         const subName = isEn ? sub.en : sub.zh;
-        const navUrl = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${sub.gcj_lat},${sub.gcj_lon};title:${encodeURIComponent(name + ' - ' + subName)};addr:${encodeURIComponent('厦门市' + spot.district_zh)}&referer=xmbirds`;
+        const navUrl = `https://uri.amap.com/marker?position=${sub.gcj_lon},${sub.gcj_lat}&name=${encodeURIComponent(name + ' - ' + subName)}&callnative=1`;
         return `<a class="subspot-nav-pill" href="${navUrl}" target="_blank" rel="noopener">⭕ ${subName} ↗</a>`;
       }).join('');
 
       const subspotsSvgHits = subspots.filter(sub => Array.isArray(sub.img_px)).map(sub => {
         const subName = isEn ? sub.en : sub.zh;
         const [px, py] = sub.img_px;
-        const navUrl = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${sub.gcj_lat},${sub.gcj_lon};title:${encodeURIComponent(name + ' - ' + subName)};addr:${encodeURIComponent('厦门市' + spot.district_zh)}&referer=xmbirds`;
+        const navUrl = `https://uri.amap.com/marker?position=${sub.gcj_lon},${sub.gcj_lat}&name=${encodeURIComponent(name + ' - ' + subName)}&callnative=1`;
         return `<a class="subspot-hit-link" href="${navUrl}" target="_blank" rel="noopener" title="${subName}">
           <circle class="subspot-hit-circle" cx="${px}" cy="${py}" r="28" />
         </a>`;
@@ -1163,8 +1163,8 @@
         return `<div class="bird-group-row"><span class="bird-group-label">${g.label}:</span>${chips}</div>`;
       }).join('');
 
+      const amapNavUrl = `https://uri.amap.com/marker?position=${spot.gcj_lon},${spot.gcj_lat}&name=${encodeURIComponent(name)}&callnative=1`;
       const qqNavUrl = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${spot.gcj_lat},${spot.gcj_lon};title:${encodeURIComponent(name)};addr:${encodeURIComponent('厦门市' + spot.district_zh)}&referer=xmbirds`;
-      const amapNavUrl = `https://uri.amap.com/marker?position=${spot.gcj_lon},${spot.gcj_lat}&name=${encodeURIComponent(name)}`;
 
       const sheet = document.getElementById('spotSheet');
       sheet.style.borderTopColor = c;
@@ -1214,8 +1214,8 @@
         <div class="sheet-tips"><strong>${t.labelTip}</strong>${tips}</div>
 
         <div class="sheet-actions">
-          <a class="btn-primary" href="${qqNavUrl}" target="_blank" rel="noopener">${t.btnTencent}</a>
-          <a class="btn-amap" href="${amapNavUrl}" target="_blank" rel="noopener">${t.btnAmap}</a>
+          <a class="btn-primary" href="${amapNavUrl}" target="_blank" rel="noopener">${t.btnAmap}</a>
+          <a class="btn-amap" href="${qqNavUrl}" target="_blank" rel="noopener">${t.btnTencent}</a>
         </div>
       `;
 

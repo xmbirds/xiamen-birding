@@ -677,6 +677,7 @@ def build_local_spot_svg(spot):
     parts.append('  </g>')
 
     # Sub-spots (子观鸟点 - red target rings with high-contrast labels, aligned 1:1 with satellite guide map!)
+    import urllib.parse
     for idx, sub in enumerate(lm.get("subspots", []), 1):
         if "img_px" in sub and len(sub["img_px"]) == 2:
             sx, sy = round(sub["img_px"][0] / 2.0, 1), round(sub["img_px"][1] / 2.0, 1)
@@ -685,13 +686,19 @@ def build_local_spot_svg(spot):
         dx = sub.get("dx", 14)
         dy = sub.get("dy", 5)
         anchor = sub.get("anchor", "start")
-        parts.append(f'  <g class="subspot-group" transform="translate({sx}, {sy})" filter="url(#localPinShadow)">')
-        parts.append('    <circle cx="0" cy="0" r="10.5" fill="rgba(217, 48, 37, 0.16)" stroke="#d93025" stroke-width="2.6"/>')
-        parts.append('    <circle cx="0" cy="0" r="4" fill="#d93025" stroke="#ffffff" stroke-width="1.3"/>')
+        glon = sub.get("gcj_lon", sub["lon"])
+        glat = sub.get("gcj_lat", sub["lat"])
+        sub_title = urllib.parse.quote(f"{spot['name_zh']} - {sub['zh']}")
+        amap_url = f"https://uri.amap.com/marker?position={glon},{glat}&name={sub_title}&callnative=1"
+        parts.append(f'  <a href="{amap_url}" target="_blank" rel="noopener" style="cursor:pointer">')
+        parts.append(f'    <g class="subspot-group" transform="translate({sx}, {sy})" filter="url(#localPinShadow)">')
+        parts.append('      <circle cx="0" cy="0" r="10.5" fill="rgba(217, 48, 37, 0.16)" stroke="#d93025" stroke-width="2.6"/>')
+        parts.append('      <circle cx="0" cy="0" r="4" fill="#d93025" stroke="#ffffff" stroke-width="1.3"/>')
         parts.append(
-            f'    <text x="{dx}" y="{dy}" text-anchor="{anchor}" font-size="12.5" font-weight="800" fill="#b31412" stroke="#fffef8" stroke-width="4.2" paint-order="stroke" class="i18n-svg-text" data-zh="{sub["zh"]}" data-en="{sub["en"]}">{sub["zh"]}</text>'
+            f'      <text x="{dx}" y="{dy}" text-anchor="{anchor}" font-size="12.5" font-weight="800" fill="#b31412" stroke="#fffef8" stroke-width="4.2" paint-order="stroke" class="i18n-svg-text" data-zh="{sub["zh"]}" data-en="{sub["en"]}">{sub["zh"]}</text>'
         )
-        parts.append('  </g>')
+        parts.append('    </g>')
+        parts.append('  </a>')
 
     # Scale bar (bottom-left) & Mini Compass (top-right)
     scale_m = lm.get("scale_m", 200)
@@ -1664,8 +1671,8 @@ def build_bilingual_page(default_lang="zh"):
         labelTransport: '🚌 交通方式：',
         labelDifficulty: '🥾 难度系数：',
         labelTip: '💡 观鸟提示：',
-        btnTencent: '🧭 腾讯地图导航 (微信推荐)',
-        btnAmap: '🗺️ 高德地图导航',
+        btnAmap: '🧭 高德地图导航 (推荐)',
+        btnTencent: '🗺️ 腾讯地图导航',
         ppVector: '🗺️ 简图',
         ppSat: '🛰️ 卫星图'
       }},
@@ -1689,14 +1696,14 @@ def build_bilingual_page(default_lang="zh"):
         legendForest: 'Urban Park',
         legendMountain: 'Forest',
         localMapTitle: '🗺️ Local Spot Guide Map & Sub-sites',
-        subspotsNavLabel: '📍 Navigate to Sub-sites:',
+        subspotsNavLabel: '📍 Navigate to Sub-sites (Amap):',
         labelDuration: '⏱️ Duration: ',
         labelMonths: '📅 Best Months: ',
         labelTransport: '🚌 Getting There: ',
         labelDifficulty: '🥾 Difficulty: ',
         labelTip: '💡 Birding Tip: ',
-        btnTencent: '🧭 Tencent Maps (WeChat)',
-        btnAmap: '🗺️ Amap Navigation',
+        btnAmap: '🧭 Amap Navigation (Recommended)',
+        btnTencent: '🗺️ Tencent Maps',
         ppVector: '🗺️ Vector',
         ppSat: '🛰️ Satellite'
       }}
@@ -1956,7 +1963,7 @@ def build_bilingual_page(default_lang="zh"):
       const subspots = spot.local_map.subspots || [];
       const subspotsNavHtml = subspots.map(sub => {{
         const subName = isEn ? sub.en : sub.zh;
-        const navUrl = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${{sub.gcj_lat}},${{sub.gcj_lon}};title:${{encodeURIComponent(name + ' - ' + subName)}};addr:${{encodeURIComponent('厦门市' + spot.district_zh)}}&referer=xmbirds`;
+        const navUrl = `https://uri.amap.com/marker?position=${{sub.gcj_lon}},${{sub.gcj_lat}}&name=${{encodeURIComponent(name + ' - ' + subName)}}&callnative=1`;
         return `<a class="subspot-nav-pill" href="${{navUrl}}" target="_blank" rel="noopener">⭕ ${{subName}} ↗</a>`;
       }}).join('');
 
@@ -1964,7 +1971,7 @@ def build_bilingual_page(default_lang="zh"):
       const satHitsHtml = subspots.map(sub => {{
         if (!sub.img_px) return '';
         const subName = isEn ? sub.en : sub.zh;
-        const navUrl = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${{sub.gcj_lat}},${{sub.gcj_lon}};title:${{encodeURIComponent(name + ' - ' + subName)}};addr:${{encodeURIComponent('厦门市' + spot.district_zh)}}&referer=xmbirds`;
+        const navUrl = `https://uri.amap.com/marker?position=${{sub.gcj_lon}},${{sub.gcj_lat}}&name=${{encodeURIComponent(name + ' - ' + subName)}}&callnative=1`;
         return `<a href="${{navUrl}}" target="_blank" rel="noopener"><circle class="local-subspot-hit" cx="${{sub.img_px[0]}}" cy="${{sub.img_px[1]}}" r="32"><title>${{subName}}</title></circle></a>`;
       }}).join('');
 
@@ -1974,8 +1981,8 @@ def build_bilingual_page(default_lang="zh"):
         return `<div class="bird-group-row"><span class="bird-group-label">${{g.label}}:</span>${{chips}}</div>`;
       }}).join('');
 
+      const amapNavUrl = `https://uri.amap.com/marker?position=${{spot.gcj_lon}},${{spot.gcj_lat}}&name=${{encodeURIComponent(name)}}&callnative=1`;
       const qqNavUrl = `https://apis.map.qq.com/uri/v1/marker?marker=coord:${{spot.gcj_lat}},${{spot.gcj_lon}};title:${{encodeURIComponent(name)}};addr:${{encodeURIComponent('厦门市' + spot.district_zh)}}&referer=xmbirds`;
-      const amapNavUrl = `https://uri.amap.com/marker?position=${{spot.gcj_lon}},${{spot.gcj_lat}}&name=${{encodeURIComponent(name)}}`;
 
       const sheet = document.getElementById('spotSheet');
       sheet.style.borderTopColor = c;
@@ -2029,8 +2036,8 @@ def build_bilingual_page(default_lang="zh"):
         <div class="sheet-tips"><strong>${{t.labelTip}}</strong>${{tips}}</div>
 
         <div class="sheet-actions">
-          <a class="btn-primary" href="${{qqNavUrl}}" target="_blank" rel="noopener">${{t.btnTencent}}</a>
-          <a class="btn-amap" href="${{amapNavUrl}}" target="_blank" rel="noopener">${{t.btnAmap}}</a>
+          <a class="btn-primary" href="${{amapNavUrl}}" target="_blank" rel="noopener">${{t.btnAmap}}</a>
+          <a class="btn-amap" href="${{qqNavUrl}}" target="_blank" rel="noopener">${{t.btnTencent}}</a>
         </div>
       `;
 
