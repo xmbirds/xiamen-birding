@@ -328,16 +328,16 @@ svg_labels_str = "\n".join(svg_labels_list)
 
 habitat_pin_colors = {
     "coastal": "#1565C0",
-    "wetland": "#00838F",
+    "wetland": "#1565C0",
     "forest": "#388E3C",
     "mountain": "#1B5E20",
 }
 
 habitat_pill_fills = {
-    "coastal": "rgba(227, 242, 253, 0.95)",
-    "wetland": "rgba(224, 247, 250, 0.95)",
-    "forest": "rgba(232, 245, 233, 0.95)",
-    "mountain": "rgba(215, 238, 217, 0.95)",
+    "coastal": "#BBDEFB",
+    "wetland": "#BBDEFB",
+    "forest": "#C8E6C9",
+    "mountain": "#A5D6A7",
 }
 
 # Placement for the 9 markers on main map (zero overlap in both Chinese and English!)
@@ -1654,10 +1654,9 @@ def build_bilingual_page(default_lang="zh"):
         thBirds: '代表及高光鸟种',
         legendCity: '厦门市界',
         legendDist: '区级边界',
-        legendWetland: '湖泊/海湾湿地',
-        legendCoastal: '滨海滩涂/沙滩',
-        legendForest: '城市山林公园',
-        legendMountain: '高山森林/水库',
+        legendCoastal: '海滨滩涂/湿地',
+        legendForest: '城市公园',
+        legendMountain: '森林',
         localMapTitle: '🗺️ 单点局部导览图（含子观鸟点）',
         subspotsNavLabel: '📍 子观鸟点一键导航：',
         labelDuration: '⏱️ 建议时长：',
@@ -1686,10 +1685,9 @@ def build_bilingual_page(default_lang="zh"):
         thBirds: 'Key & Notable Birds',
         legendCity: 'City Boundary',
         legendDist: 'District Boundary',
-        legendWetland: 'Lake / Bay Wetland',
-        legendCoastal: 'Coastal Mudflats',
-        legendForest: 'Urban Forest Park',
-        legendMountain: 'Mountain Forest',
+        legendCoastal: 'Coastal / Wetland',
+        legendForest: 'Urban Park',
+        legendMountain: 'Forest',
         localMapTitle: '🗺️ Local Spot Guide Map & Sub-sites',
         subspotsNavLabel: '📍 Navigate to Sub-sites:',
         labelDuration: '⏱️ Duration: ',
@@ -1803,7 +1801,6 @@ def build_bilingual_page(default_lang="zh"):
         <span class="legend-item"><i class="legend-line-city"></i> <strong>${{t.legendCity}}</strong></span>
         <span class="legend-item"><i class="legend-line-dist"></i> <strong>${{t.legendDist}}</strong></span>
         <span class="legend-item"><i class="legend-dot" style="background:#1565C0"></i> ${{t.legendCoastal}}</span>
-        <span class="legend-item"><i class="legend-dot" style="background:#00838F"></i> ${{t.legendWetland}}</span>
         <span class="legend-item"><i class="legend-dot" style="background:#388E3C"></i> ${{t.legendForest}}</span>
         <span class="legend-item"><i class="legend-dot" style="background:#1B5E20"></i> ${{t.legendMountain}}</span>
       `;

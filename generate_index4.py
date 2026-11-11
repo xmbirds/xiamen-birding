@@ -15,7 +15,7 @@ LOCAL_IMG_H = 800
 
 habitat_pin_colors = {
     "coastal": "#1565C0",
-    "wetland": "#00838F",
+    "wetland": "#1565C0",
     "forest": "#388E3C",
     "mountain": "#1B5E20",
 }
