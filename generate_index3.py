@@ -327,10 +327,17 @@ for zh_txt, en_txt, lon, lat, is_xm in district_labels:
 svg_labels_str = "\n".join(svg_labels_list)
 
 habitat_pin_colors = {
-    "coastal": "#b5382a",
-    "wetland": "#1d6f8a",
-    "forest": "#2d6a4f",
-    "mountain": "#3d5a80",
+    "coastal": "#1565C0",
+    "wetland": "#00838F",
+    "forest": "#388E3C",
+    "mountain": "#1B5E20",
+}
+
+habitat_pill_fills = {
+    "coastal": "rgba(227, 242, 253, 0.95)",
+    "wetland": "rgba(224, 247, 250, 0.95)",
+    "forest": "rgba(232, 245, 233, 0.95)",
+    "mountain": "rgba(215, 238, 217, 0.95)",
 }
 
 # Placement for the 9 markers on main map (zero overlap in both Chinese and English!)
@@ -350,7 +357,8 @@ svg_markers_list = []
 for s in SPOTS_1109:
     sx, sy = lonlat_to_svg(s["lon"], s["lat"])
     s["sx"], s["sy"] = sx, sy
-    c = habitat_pin_colors.get(s["habitat_tag"], "#b5382a")
+    c = habitat_pin_colors.get(s["habitat_tag"], "#1565C0")
+    pill_fill = habitat_pill_fills.get(s["habitat_tag"], "rgba(255, 255, 255, 0.94)")
     label_dx, label_dy, text_anchor = label_placement_9.get(s["id"], (24, 5, "start"))
     zh_short = s["short_zh"]
     en_short = s["short_en"]
@@ -371,7 +379,7 @@ for s in SPOTS_1109:
               <circle class="pin-bg" cx="{sx}" cy="{sy}" r="20" fill="{c}" stroke="#ffffff" stroke-width="3.2"/>
               <text x="{sx}" y="{sy + 6.4}" text-anchor="middle" fill="#ffffff" font-size="18.5" font-weight="900" font-family="-apple-system, BlinkMacSystemFont, sans-serif">{s['id']}</text>
               <g class="pin-tag" data-anchor="{text_anchor}" transform="translate({sx + label_dx}, {sy + label_dy})">
-                <rect class="pin-pill-bg" x="{pill_x}" y="{pill_y}" width="{est_w}" height="{pill_h}" rx="7" ry="7" fill="rgba(255, 255, 255, 0.94)" stroke="{c}" stroke-width="2.0"/>
+                <rect class="pin-pill-bg" x="{pill_x}" y="{pill_y}" width="{est_w}" height="{pill_h}" rx="7" ry="7" fill="{pill_fill}" stroke="{c}" stroke-width="2.0"/>
                 <text x="{txt_x}" y="0" text-anchor="{text_anchor}" fill="{c}" class="pin-label-text i18n-svg-text" data-zh="{zh_short}" data-en="{en_short}">{zh_short}</text>
               </g>
             </g>''')
@@ -1794,10 +1802,10 @@ def build_bilingual_page(default_lang="zh"):
       document.getElementById('mapLegend').innerHTML = `
         <span class="legend-item"><i class="legend-line-city"></i> <strong>${{t.legendCity}}</strong></span>
         <span class="legend-item"><i class="legend-line-dist"></i> <strong>${{t.legendDist}}</strong></span>
-        <span class="legend-item"><i class="legend-dot" style="background:#1d6f8a"></i> ${{t.legendWetland}}</span>
-        <span class="legend-item"><i class="legend-dot" style="background:#b5382a"></i> ${{t.legendCoastal}}</span>
-        <span class="legend-item"><i class="legend-dot" style="background:#2d6a4f"></i> ${{t.legendForest}}</span>
-        <span class="legend-item"><i class="legend-dot" style="background:#3d5a80"></i> ${{t.legendMountain}}</span>
+        <span class="legend-item"><i class="legend-dot" style="background:#1565C0"></i> ${{t.legendCoastal}}</span>
+        <span class="legend-item"><i class="legend-dot" style="background:#00838F"></i> ${{t.legendWetland}}</span>
+        <span class="legend-item"><i class="legend-dot" style="background:#388E3C"></i> ${{t.legendForest}}</span>
+        <span class="legend-item"><i class="legend-dot" style="background:#1B5E20"></i> ${{t.legendMountain}}</span>
       `;
 
       document.getElementById('tableSectionTitle').textContent = t.tableTitle;

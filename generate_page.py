@@ -573,10 +573,10 @@ for r_pts in routes:
     svg_routes_str += f'            <polyline points="{pts_str}" fill="none" stroke="#b5382a" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="1,6" class="bird-route"/>\n'
 
 habitat_pin_colors = {
-    "wetland": "#1d6f8a",
-    "forest": "#2d6a4f",
-    "mountain": "#4a6b5d",
-    "coastal": "#b5382a",
+    "wetland": "#00838F",
+    "forest": "#388E3C",
+    "mountain": "#1B5E20",
+    "coastal": "#1565C0",
 }
 
 label_placement = {
@@ -1330,10 +1330,10 @@ def build_html(theme="blue"):
         <div class="map-legend">
           <span class="legend-item"><i class="legend-line-city"></i> <strong>厦门市界</strong></span>
           <span class="legend-item"><i class="legend-line-dist"></i> <strong>区级边界</strong></span>
-          <span class="legend-item"><i class="legend-dot" style="background:#b5382a"></i> 沿海滩涂/鱼塭</span>
-          <span class="legend-item"><i class="legend-dot" style="background:#1d6f8a"></i> 湖泊/红树林</span>
-          <span class="legend-item"><i class="legend-dot" style="background:#2d6a4f"></i> 城市山林</span>
-          <span class="legend-item"><i class="legend-dot" style="background:#4a6b5d"></i> 远郊高山/水库</span>
+          <span class="legend-item"><i class="legend-dot" style="background:#1565C0"></i> 沿海滩涂/鱼塭</span>
+          <span class="legend-item"><i class="legend-dot" style="background:#00838F"></i> 湖泊/红树林</span>
+          <span class="legend-item"><i class="legend-dot" style="background:#388E3C"></i> 城市山林</span>
+          <span class="legend-item"><i class="legend-dot" style="background:#1B5E20"></i> 远郊高山/水库</span>
           <span class="legend-item"><i class="legend-line-route"></i> 赏鸟步道</span>
         </div>
       </div>

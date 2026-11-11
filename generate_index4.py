@@ -14,10 +14,10 @@ LOCAL_IMG_W = 1200
 LOCAL_IMG_H = 800
 
 habitat_pin_colors = {
-    "coastal": "#b5382a",
-    "wetland": "#1d6f8a",
-    "forest": "#2d6a4f",
-    "mountain": "#3d5a80",
+    "coastal": "#1565C0",
+    "wetland": "#00838F",
+    "forest": "#388E3C",
+    "mountain": "#1B5E20",
 }
 
 # Build interactive SVG hotspot overlay for the 1968x1901 official overview map image
