@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=4.0, user-scalable=yes" />
-  <title>在厦门，与鸟相遇 · 厦门全域观鸟地图</title>
+  <title>厦门全域观鸟地图</title>
   <style>
     :root {
       --page-bg: #edf4f9;
@@ -1177,7 +1177,7 @@
     function renderHeaderAndLegend() {
       const isEn = (currentLang === 'en');
       document.documentElement.lang = isEn ? 'en' : 'zh-CN';
-      document.title = isEn ? INTRO.title_en : INTRO.title_zh;
+      document.title = isEn ? 'Xiamen Birding Map' : '厦门全域观鸟地图';
 
       document.getElementById('btnLangZh').classList.toggle('active', !isEn);
       document.getElementById('btnLangEn').classList.toggle('active', isEn);

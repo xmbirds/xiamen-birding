@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=4.0, user-scalable=yes" />
-  <title>Encountering Birds in Xiamen · Xiamen Birding Map</title>
+  <title>Xiamen Birding Map</title>
   <style>
     :root {
       --page-bg: #edf4f9;
@@ -782,7 +782,7 @@
     <section class="map-section">
       <div class="map-frame">
         <div class="overview-img-stage">
-          <img id="overviewMapImg" class="overview-map-img" src="assets_1110/overview_en.png" alt="Encountering Birds in Xiamen · Xiamen Birding Map" width="1968" height="1901" />
+          <img id="overviewMapImg" class="overview-map-img" src="assets_1110/overview_en.png" alt="Xiamen Birding Map" width="1968" height="1901" />
           <svg id="overviewHotspotsSvg" class="overview-hotspots-svg" viewBox="0 0 1968 1901" xmlns="http://www.w3.org/2000/svg">
             <g class="overview-hotspot" data-id="1" tabindex="0" role="button" aria-label="① 思明区筼筜湖西堤纳潮闸口" onclick="selectSpot(1)">
               <circle class="hotspot-pulse" cx="753.0" cy="1505.5" r="26" />
@@ -967,7 +967,7 @@
     function renderHeaderAndMap() {
       const isEn = (currentLang === 'en');
       document.documentElement.lang = isEn ? 'en' : 'zh-CN';
-      document.title = isEn ? INTRO.title_en : INTRO.title_zh;
+      document.title = isEn ? 'Xiamen Birding Map' : '厦门全域观鸟地图';
 
       document.getElementById('btnLangZh').classList.toggle('active', !isEn);
       document.getElementById('btnLangEn').classList.toggle('active', isEn);

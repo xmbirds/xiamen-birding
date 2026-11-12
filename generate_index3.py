@@ -724,7 +724,7 @@ for s in SPOTS_1109:
 def build_bilingual_page(default_lang="zh"):
     is_en = (default_lang == "en")
     html_lang = "en" if is_en else "zh-CN"
-    page_title = INTRO_DATA["title_en"] if is_en else INTRO_DATA["title_zh"]
+    page_title = "Xiamen Birding Map" if is_en else "厦门全域观鸟地图"
 
     return f'''<!DOCTYPE html>
 <html lang="{html_lang}">
@@ -1792,7 +1792,7 @@ def build_bilingual_page(default_lang="zh"):
     function renderHeaderAndLegend() {{
       const isEn = (currentLang === 'en');
       document.documentElement.lang = isEn ? 'en' : 'zh-CN';
-      document.title = isEn ? INTRO.title_en : INTRO.title_zh;
+      document.title = isEn ? 'Xiamen Birding Map' : '厦门全域观鸟地图';
 
       document.getElementById('btnLangZh').classList.toggle('active', !isEn);
       document.getElementById('btnLangEn').classList.toggle('active', isEn);

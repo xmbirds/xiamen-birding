@@ -40,7 +40,7 @@ overview_hotspots_svg_str = "\n".join(hotspot_els)
 def build_index4_page(default_lang="zh"):
     is_en = (default_lang == "en")
     html_lang = "en" if is_en else "zh-CN"
-    page_title = INTRO_DATA["title_en"] if is_en else INTRO_DATA["title_zh"]
+    page_title = "Xiamen Birding Map" if is_en else "厦门全域观鸟地图"
     initial_overview_src = "assets_1110/overview_en.png" if is_en else "assets_1110/overview_zh.png"
 
     return f'''<!DOCTYPE html>
@@ -959,7 +959,7 @@ def build_index4_page(default_lang="zh"):
     function renderHeaderAndMap() {{
       const isEn = (currentLang === 'en');
       document.documentElement.lang = isEn ? 'en' : 'zh-CN';
-      document.title = isEn ? INTRO.title_en : INTRO.title_zh;
+      document.title = isEn ? 'Xiamen Birding Map' : '厦门全域观鸟地图';
 
       document.getElementById('btnLangZh').classList.toggle('active', !isEn);
       document.getElementById('btnLangEn').classList.toggle('active', isEn);
