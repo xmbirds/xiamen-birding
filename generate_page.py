@@ -1152,95 +1152,15 @@ def build_html(theme="blue"):
       color: #ffffff;
     }}
 
-    /* Editorial Credits Footer */
+    /* Simple Centered Footer */
     .credits-section {{
       max-width: 900px;
-      margin: 22px auto 0;
-      padding: 0 14px;
-    }}
-    .credits-card {{
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-top: 3px solid var(--accent-main);
-      border-radius: 10px;
-      padding: 16px 18px 14px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.04);
-    }}
-    .credits-header {{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding-bottom: 10px;
-      margin-bottom: 12px;
-      border-bottom: 1px dashed var(--border-color);
-    }}
-    .credits-title {{
-      font-family: "Songti SC", "STSong", serif;
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--ink-dark);
-      letter-spacing: 0.5px;
-    }}
-    .credits-sub {{
-      font-size: 12px;
+      margin: 24px auto 0;
+      padding: 14px 14px 4px;
+      text-align: center;
+      font-size: 12.5px;
       color: var(--ink-muted);
-    }}
-    .credits-grid {{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }}
-    .credit-group {{
-      background: var(--page-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 10px 12px;
-    }}
-    .credit-role {{
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--ink-muted);
-      margin-bottom: 7px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }}
-    .credit-people {{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }}
-    .author-pill {{
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      padding: 3.5px 9px;
-      font-size: 13px;
-      color: var(--ink-dark);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-    }}
-    .author-name {{
-      font-weight: 700;
-    }}
-    .author-nick {{
-      font-size: 11.5px;
-      font-weight: 600;
-      color: var(--chip-text);
-      background: var(--chip-bg);
-      border: 1px solid var(--chip-border);
-      border-radius: 4px;
-      padding: 0.5px 6px;
-    }}
-    @media (max-width: 680px) {{
-      .credits-grid {{
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }}
+      border-top: 1px dashed var(--border-color);
     }}
   </style>
 </head>
@@ -1360,37 +1280,7 @@ def build_html(theme="blue"):
       </div>
     </section>
 
-    <section class="credits-section">
-      <div class="credits-card">
-        <div class="credits-header">
-          <span class="credits-title">🐦 厦门全域观鸟地图 · 创作与编校团队</span>
-          <span class="credits-sub">厦门市观鸟协会 出品 · 保持安全距离，文明安静观鸟</span>
-        </div>
-        <div class="credits-grid">
-          <div class="credit-group">
-            <div class="credit-role">🗺️ 地图制作</div>
-            <div class="credit-people">
-              <span class="author-pill"><span class="author-name">刘杰</span><span class="author-nick">猫行天下</span></span>
-            </div>
-          </div>
-          <div class="credit-group">
-            <div class="credit-role">✍️ 文字介绍</div>
-            <div class="credit-people">
-              <span class="author-pill"><span class="author-name">陈雨晗</span><span class="author-nick">Hans</span></span>
-              <span class="author-pill"><span class="author-name">李享</span><span class="author-nick">无足之鸟</span></span>
-            </div>
-          </div>
-          <div class="credit-group">
-            <div class="credit-role">🔍 校对审核</div>
-            <div class="credit-people">
-              <span class="author-pill"><span class="author-name">陈跃生</span><span class="author-nick">林鸮</span></span>
-              <span class="author-pill"><span class="author-name">刘昕</span><span class="author-nick">流小星</span></span>
-              <span class="author-pill"><span class="author-name">陈志鸿</span><span class="author-nick">岩鹭</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="credits-section">厦门市观鸟协会 监制 (2026) · 保持安全距离，文明安静观鸟</section>
   </main>
 
   <div id="cardBackdrop" class="card-backdrop" onclick="closeCard()"></div>
