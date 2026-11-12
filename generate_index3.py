@@ -1293,12 +1293,28 @@ def build_bilingual_page(default_lang="zh"):
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 7px 12px;
+      gap: 8px;
+      padding: 5px 10px 5px 12px;
       background: #dfeef8;
       border-bottom: 1px solid var(--border-color);
       font-size: 12.5px;
       font-weight: 700;
       color: var(--ink-dark);
+    }}
+    .local-map-header .map-pingpong-btn {{
+      position: static;
+      padding: 2px;
+      box-shadow: 0 1px 4px rgba(15, 32, 48, 0.12);
+      background: rgba(255, 255, 255, 0.96);
+      flex-shrink: 0;
+    }}
+    .local-map-header .map-pingpong-btn:hover {{
+      transform: none;
+      box-shadow: 0 2px 6px rgba(15, 32, 48, 0.18);
+    }}
+    .local-map-header .map-pingpong-btn .pp-opt {{
+      font-size: 11.5px;
+      padding: 3px 9px;
     }}
     .local-map-stage {{
       position: relative;
@@ -1341,10 +1357,6 @@ def build_bilingual_page(default_lang="zh"):
     .local-subspot-hit:hover {{
       fill: rgba(255, 221, 87, 0.28);
       stroke: #ffdd57;
-    }}
-    .local-map-stage .map-pingpong-btn {{
-      right: 10px;
-      bottom: 10px;
     }}
     .subspots-bar {{
       padding: 8px 11px;
@@ -1582,8 +1594,6 @@ def build_bilingual_page(default_lang="zh"):
               <path id="coastlineStrokePath" d="{svg_exact_coast_d}" fill="none" stroke-width="1.05" stroke-linejoin="round" />
               <path d="{svg_district_border_d}" fill="none" stroke="#fffdf7" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.88" />
               <path id="distBorderPath" d="{svg_district_border_d}" fill="none" stroke-width="1.8" stroke-dasharray="6,4" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="{svg_city_border_d}" fill="none" stroke="#fffdf7" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
-              <path id="cityBorderPath" d="{svg_city_border_d}" fill="none" stroke-width="2.6" stroke-dasharray="10,4,2,4" stroke-linecap="round" stroke-linejoin="round" />
 {svg_labels_str}
             </g>
 
@@ -1659,12 +1669,11 @@ def build_bilingual_page(default_lang="zh"):
         thSpot: '观鸟点',
         thHabitat: '生境与最佳月份',
         thBirds: '代表及高光鸟种',
-        legendCity: '厦门市界',
         legendDist: '区级边界',
         legendCoastal: '海滨滩涂/湿地',
         legendForest: '城市公园',
         legendMountain: '森林',
-        localMapTitle: '🗺️ 单点局部导览图（含子观鸟点）',
+        localMapTitle: '🗺️ 单点局部导览图',
         subspotsNavLabel: '📍 子观鸟点一键导航：',
         labelDuration: '⏱️ 建议时长：',
         labelMonths: '📅 最佳月份：',
@@ -1690,12 +1699,11 @@ def build_bilingual_page(default_lang="zh"):
         thSpot: 'Birding Hotspot',
         thHabitat: 'Habitat & Best Months',
         thBirds: 'Key & Notable Birds',
-        legendCity: 'City Boundary',
         legendDist: 'District Boundary',
         legendCoastal: 'Coastal / Wetland',
         legendForest: 'Urban Park',
         legendMountain: 'Forest',
-        localMapTitle: '🗺️ Local Spot Guide Map & Sub-sites',
+        localMapTitle: '🗺️ Spot Guide Map',
         subspotsNavLabel: '📍 Navigate to Sub-sites (Amap):',
         labelDuration: '⏱️ Duration: ',
         labelMonths: '📅 Best Months: ',
@@ -1805,7 +1813,6 @@ def build_bilingual_page(default_lang="zh"):
 
       const t = UI_TEXT[currentLang];
       document.getElementById('mapLegend').innerHTML = `
-        <span class="legend-item"><i class="legend-line-city"></i> <strong>${{t.legendCity}}</strong></span>
         <span class="legend-item"><i class="legend-line-dist"></i> <strong>${{t.legendDist}}</strong></span>
         <span class="legend-item"><i class="legend-dot" style="background:#1565C0"></i> ${{t.legendCoastal}}</span>
         <span class="legend-item"><i class="legend-dot" style="background:#388E3C"></i> ${{t.legendForest}}</span>
@@ -2006,7 +2013,7 @@ def build_bilingual_page(default_lang="zh"):
         <div class="local-map-box">
           <div class="local-map-header">
             <span>${{t.localMapTitle}}</span>
-            <span style="font-size:11.5px;color:var(--ink-muted)">${{spot.lon.toFixed(4)}}°E, ${{spot.lat.toFixed(4)}}°N</span>
+            <button type="button" class="map-pingpong-btn" id="btnLocalPingPong" onclick="toggleLocalMapMode()" aria-label="切换简图或卫星图"></button>
           </div>
           <div class="local-map-stage">
             <div id="localSvgContainer" style="width:100%;height:100%">${{spot.local_svg}}</div>
@@ -2016,7 +2023,6 @@ def build_bilingual_page(default_lang="zh"):
                 ${{satHitsHtml}}
               </svg>
             </div>
-            <button type="button" class="map-pingpong-btn" id="btnLocalPingPong" onclick="toggleLocalMapMode()" aria-label="切换简图或卫星图"></button>
           </div>
           <div class="subspots-bar">
             <span style="font-size:12px;font-weight:700;color:var(--ink-muted)">${{t.subspotsNavLabel}}</span>

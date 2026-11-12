@@ -1301,10 +1301,6 @@ def build_html(theme="blue"):
             <path d="{svg_district_border_d}" fill="none" stroke="#fffdf7" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.88" />
             <path id="distBorderPath" d="{svg_district_border_d}" fill="none" stroke-width="1.8" stroke-dasharray="6,4" stroke-linecap="round" stroke-linejoin="round" />
 
-            <!-- Outer Xiamen City Boundary (厦门市界) -->
-            <path d="{svg_city_border_d}" fill="none" stroke="#fffdf7" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
-            <path id="cityBorderPath" d="{svg_city_border_d}" fill="none" stroke-width="2.6" stroke-dasharray="10,4,2,4" stroke-linecap="round" stroke-linejoin="round" />
-
 {svg_labels_str}
           </g>
 
@@ -1328,7 +1324,6 @@ def build_html(theme="blue"):
         </svg>
 
         <div class="map-legend">
-          <span class="legend-item"><i class="legend-line-city"></i> <strong>厦门市界</strong></span>
           <span class="legend-item"><i class="legend-line-dist"></i> <strong>区级边界</strong></span>
           <span class="legend-item"><i class="legend-dot" style="background:#1565C0"></i> 海滨滩涂/湿地</span>
           <span class="legend-item"><i class="legend-dot" style="background:#388E3C"></i> 城市公园</span>
